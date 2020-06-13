@@ -19,11 +19,12 @@ const Navbar = ({ toggleListCat }) => {
         aria-controls="navbarNavDropdown"
         aria-expanded="false"
         aria-label="Toggle navigation"
+        onClick={() => toggleListCat()}
       >
         <span className="navbar-toggler-icon" />
       </button>
       <div
-        className="collapse navbar-collapse justify-content-end"
+        className="collapse navbar-collapse justify-content-end hidden-md-down (hidden-md hidden-sm hidden-xs) = d-none d-lg-block"
         id="navbarNavDropdown"
       >
         <ul className="navbar-nav  ">
