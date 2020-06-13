@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import CategoriesList from "./components/CategoriesList";
+import MainProductView from "./components/products/MainProductView";
+import ProductsState from "./context/ProductsState";
 import axiosClient from "./config/axios";
 
 function App() {
@@ -27,11 +28,11 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <ProductsState>
       <Navbar toggleListCat={toggleListCat} />
-
       {listCatActive ? <CategoriesList categories={categories} /> : null}
-    </div>
+      {listCatActive ? null : <MainProductView />}
+    </ProductsState>
   );
 }
 
