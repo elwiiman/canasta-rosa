@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@300;400&display=swap");
 body {
   margin: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif !important;
 }
 
 .navbar {
@@ -45,8 +47,28 @@ body {
   height: 6rem;
 }
 
+.spinner-color {
+  color: #f374ad !important;
+}
+
 .jumbotron {
   padding-bottom: 10rem !important;
   padding-top: 10rem !important;
   background-color: white !important;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 0.9rem;
+  font-family: Lato;
+}
+
+.paginator-number {
+  font-family: Lato;
+  color: #cd2672 !important;
+}
+
+.paginator-number-muted {
+  font-family: Lato;
+  color: #747474 !important;
 }

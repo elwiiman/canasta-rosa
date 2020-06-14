@@ -10,16 +10,16 @@ const Product = ({ product }) => {
               ? product.photo.small
               : "https://res.cloudinary.com/elwiiman/image/upload/v1592095087/CanastaRosa/no-disponible_swk376.jpg"
           }
-          className="card-img-top"
+          className="card-img-top p-2"
           alt={product.slug}
         />
-        <div className="card-body">
-          <h5 className="card-title">{product.name}</h5>
-          <h6 className="card-subtitle mb-2 text-muted">
-            @{product.store.name}
+        <div className="card-body pt-1 pb-1">
+          <h6 className="card-title pb-0">{product.name}</h6>
+          <h6 className="card-subtitle mb-2 text-muted pb-0">
+            <small> @{product.store.name} </small>
           </h6>
-          <p className="card-text">
-            <span className="">
+          <p className="card-text pb-0 mb-0">
+            <span className="price">
               {product.price} {product.currency.value}
             </span>
           </p>

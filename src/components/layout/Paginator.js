@@ -8,12 +8,11 @@ const Paginator = () => {
   //move screen to top
   const moveScreen = () => {
     const element = document.getElementById("top");
-    const headerOffset = 45;
+    const headerOffset = 60;
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition - headerOffset;
     window.scrollTo({
       top: offsetPosition,
-      behavior: "smooth",
     });
   };
 
@@ -24,7 +23,7 @@ const Paginator = () => {
       return (
         <li key={index} className="page-item">
           <button
-            className="page-link"
+            className="page-link paginator-number"
             onClick={() => {
               obtainProducts(
                 `/products/?category__slug=${slug}&page=${page + index}`,
@@ -50,7 +49,9 @@ const Paginator = () => {
           className={`page-item ${previous === null ? "disabled" : "enabled"}`}
         >
           <button
-            className="page-link"
+            className={`page-link ${
+              previous === null ? "paginator-number-muted" : "paginator-number"
+            }`}
             onClick={() => {
               obtainProducts(previous, slug);
               moveScreen();
@@ -62,9 +63,11 @@ const Paginator = () => {
 
         {listOfPages}
 
-        <li className={`page-item ${next === null ? "disabled" : "enabled"}`}>
+        <li className={`page-item ${next === null ? "disabled" : "enabled "}`}>
           <button
-            className="page-link"
+            className={`page-link ${
+              next === null ? "paginator-number-muted" : "paginator-number"
+            }`}
             onClick={() => {
               obtainProducts(next, slug);
               moveScreen();
