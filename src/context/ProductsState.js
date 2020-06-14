@@ -9,31 +9,45 @@ const ProductsState = (props) => {
   const initialState = {
     products: [],
     slug: "",
+    page: null,
     next: null,
     previous: null,
+    firstConsult: false,
+    loading: false,
   };
 
   // Dispatch to execute actions
   const [state, dispatch] = useReducer(productsReducer, initialState);
 
   //Obtain products
-  const obtainProducts = async (url = "/products/") => {
+  const obtainProducts = async (url = "/products/", aSlug = "Empty") => {
+    loading();
     const response = await axiosClient.get(url);
-    dispatch({ type: "CALL_ALL_PRODUCTS", payload: response.data });
+    dispatch({
+      type: "CALL_ALL_PRODUCTS",
+      payload: { response: response.data, slug: aSlug },
+    });
+    loadingSuccess();
   };
 
-  // const nextPageProducts = async () => {
-  //   const response = await axiosClient.get(url - next);
-  //   dispatch({type: "NEXT_PAGE_PRODUCTS", payload: response.data})
-  // };
+  const loadingSuccess = () => {
+    dispatch({ type: "LOADING_PRODUCTS_SUCCESS" });
+  };
+
+  const loading = () => {
+    dispatch({ type: "LOADING_PRODUCTS" });
+  };
 
   return (
     <productsContext.Provider
       value={{
         products: state.products,
         slug: state.slug,
+        page: state.page,
         next: state.next,
         previous: state.previous,
+        firstConsult: state.firstConsult,
+        loading: state.loading,
         obtainProducts,
       }}
     >

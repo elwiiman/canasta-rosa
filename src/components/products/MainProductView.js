@@ -1,15 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, Fragment } from "react";
 import ListProducts from "./ListProducts";
 import Paginator from "../layout/Paginator";
+import Spinner from "../../components/loading/Spinner";
 
 import productsContext from "../../context/productsContext";
 
 const MainProductView = ({}) => {
   const ProductsContext = useContext(productsContext);
-  const { products, obtainProducts } = ProductsContext;
+  const { products, obtainProducts, firstConsult, loading } = ProductsContext;
 
   useEffect(() => {
-    obtainProducts();
+    if (!firstConsult) obtainProducts();
   }, []);
 
   return (
@@ -19,14 +20,24 @@ const MainProductView = ({}) => {
         id="container-products"
       >
         <div className="row">
-          <div className="col-2">col-2</div>
-          <div className="col-10">
-            <div className="row row-cols-1 row-cols-md-3">
-              <ListProducts products={products} />
-            </div>
+          <div className="col-2 hidden-sm-down (hidden-sm hidden-xs) = d-none d-md-block">
+            col-2
+          </div>
+          <div className="col-md-10 col-lg-10 col-xl-10 col-sm-12">
+            {loading ? (
+              <Spinner />
+            ) : (
+              <Fragment>
+                <div className="row row-cols-1 row-cols-md-3">
+                  <ListProducts products={products} />
+                </div>
+                <div>
+                  <Paginator />
+                </div>
+              </Fragment>
+            )}
           </div>
         </div>
-        <Paginator />
       </div>
     </div>
   );

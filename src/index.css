@@ -21,6 +21,32 @@ body {
   cursor: pointer;
 }
 
+.btn-category {
+  background-color: rgba(255, 255, 255, 0.842);
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: 0.35s;
+}
+
+.btn-category:hover {
+  background-color: #f7afcf;
+}
+
 .gray-text {
   color: rgba(128, 128, 128, 0.89);
+}
+
+.spinner-border {
+  width: 6rem;
+  height: 6rem;
+}
+
+.jumbotron {
+  padding-bottom: 10rem !important;
+  padding-top: 10rem !important;
+  background-color: white !important;
 }

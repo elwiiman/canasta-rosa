@@ -3,7 +3,7 @@ import productsContext from "../../context/productsContext";
 
 const Paginator = () => {
   const ProductsContext = useContext(productsContext);
-  const { obtainProducts, next, previous } = ProductsContext;
+  const { obtainProducts, next, previous, slug, page } = ProductsContext;
 
   //move screen to top
   const moveScreen = () => {
@@ -11,12 +11,37 @@ const Paginator = () => {
     const headerOffset = 45;
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition - headerOffset;
-
     window.scrollTo({
       top: offsetPosition,
       behavior: "smooth",
     });
   };
+
+  //function to construct the jsx html for the li's elements with number in paginator
+  const fillPages = () => {
+    const arr = [0, 0, 0, 0, 0, 0]; // necessary to iterate 6 times to construct the li's elements
+    return arr.map((element, index) => {
+      return (
+        <li key={index} className="page-item">
+          <button
+            className="page-link"
+            onClick={() => {
+              obtainProducts(
+                `/products/?category__slug=${slug}&page=${page + index}`,
+                slug
+              );
+              moveScreen();
+            }}
+          >
+            {page + index}
+          </button>
+        </li>
+      );
+    });
+  };
+
+  //calling  fillPages function
+  const listOfPages = fillPages();
 
   return (
     <nav aria-label="Page navigation example">
@@ -27,27 +52,21 @@ const Paginator = () => {
           <button
             className="page-link"
             onClick={() => {
-              obtainProducts(previous);
+              obtainProducts(previous, slug);
               moveScreen();
             }}
           >
             Anterior
           </button>
         </li>
-        <li className="page-item">
-          <button className="page-link">1</button>
-        </li>
-        <li className="page-item">
-          <button className="page-link">2</button>
-        </li>
-        <li className="page-item">
-          <button className="page-link">3</button>
-        </li>
+
+        {listOfPages}
+
         <li className={`page-item ${next === null ? "disabled" : "enabled"}`}>
           <button
             className="page-link"
             onClick={() => {
-              obtainProducts(next);
+              obtainProducts(next, slug);
               moveScreen();
             }}
           >

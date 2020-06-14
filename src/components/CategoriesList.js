@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Category from "./Category";
 
-const CategoriesList = ({ categories }) => {
+const CategoriesList = ({ categs, toggleListCat }) => {
   return (
     <ul className="list-group list-group-flush">
-      {categories.map((category) => (
-        <Category key={category.slug} category={category} />
+      {categs.map((category) => (
+        <Category
+          key={category.slug}
+          category={category}
+          toggleListCat={toggleListCat}
+        />
       ))}
     </ul>
   );

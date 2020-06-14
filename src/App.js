@@ -14,9 +14,9 @@ function App() {
     console.log("here");
   };
 
-  const obtainCategories = async () => {
+  const obtainCategories = async (url = "/categories/") => {
     try {
-      const result = await axiosClient.get("/categories/");
+      const result = await axiosClient.get(url);
       setCategories(result.data);
     } catch (error) {
       console.log(error);
@@ -30,7 +30,9 @@ function App() {
   return (
     <ProductsState>
       <Navbar toggleListCat={toggleListCat} />
-      {listCatActive ? <CategoriesList categories={categories} /> : null}
+      {listCatActive ? (
+        <CategoriesList categs={categories} toggleListCat={toggleListCat} />
+      ) : null}
       {listCatActive ? null : <MainProductView />}
     </ProductsState>
   );

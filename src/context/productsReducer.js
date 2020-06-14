@@ -3,11 +3,27 @@ export default (state, action) => {
     case "CALL_ALL_PRODUCTS":
       return {
         ...state,
-        products: action.payload.results,
-        next: action.payload.next.split("market")[1],
-        previous: action.payload.previous
-          ? action.payload.previous.split("market")[1]
+        slug: action.payload.slug,
+        page: action.payload.response.page,
+        firstConsult: state.firstConsult ? true : !state.firstConsult,
+        loading: true,
+        products: action.payload.response.results,
+        next: action.payload.response.next.split("market")[1],
+        previous: action.payload.response.previous
+          ? action.payload.response.previous.split("market")[1]
           : null,
+      };
+
+    case "LOADING_PRODUCTS":
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case "LOADING_PRODUCTS_SUCCESS":
+      return {
+        ...state,
+        loading: false,
       };
 
     default:
