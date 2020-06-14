@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = ({ toggleListCat }) => {
   return (
-    <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light navbar-top">
       <a className="navbar-brand" href="#">
         <img
           className="logo"
