@@ -21,6 +21,7 @@ const ProductsState = (props) => {
 
   //Obtain products
   const obtainProducts = async (url = "/products/", aSlug = "Empty") => {
+    console.log("url called", url);
     loading();
     const response = await axiosClient.get(url);
     dispatch({

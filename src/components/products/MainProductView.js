@@ -15,30 +15,35 @@ const MainProductView = ({}) => {
   }, []);
 
   return (
-    <div id="top">
-      <div
-        className="container pt-5 container-products"
-        id="container-products"
-      >
-        <div className="row">
-          <div className="col-2 hidden-sm-down (hidden-sm hidden-xs) = d-none d-md-block">
-            col-2
-            <Filter />
-          </div>
-          <div className="col-md-10 col-lg-10 col-xl-10 col-sm-12">
-            {loading ? (
-              <Spinner />
-            ) : (
-              <Fragment>
+    <div
+      className="container-fluid pt-5  container-products"
+      id="container-products"
+    >
+      <div className="row">
+        <div className="col-2  pl-lg-4 hidden-md-down (hidden-md hidden-sm hidden-xs) = d-none d-lg-block">
+          <Filter />
+        </div>
+        <div className="pl-lg-5 col-md-12 col-lg-10 col-xl-10 col-sm-12">
+          {loading ? (
+            <Spinner />
+          ) : (
+            <Fragment>
+              {products.length !== 0 && firstConsult === true ? (
+                <Fragment>
+                  <div className="row row-cols-1 row-cols-md-3">
+                    <ListProducts products={products} />
+                  </div>
+                  <div>
+                    <Paginator />
+                  </div>
+                </Fragment>
+              ) : (
                 <div className="row row-cols-1 row-cols-md-3">
-                  <ListProducts products={products} />
+                  <h5 className="text-center">No se encontraron resultados</h5>
                 </div>
-                <div>
-                  <Paginator />
-                </div>
-              </Fragment>
-            )}
-          </div>
+              )}
+            </Fragment>
+          )}
         </div>
       </div>
     </div>

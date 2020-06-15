@@ -8,7 +8,9 @@ export default (state, action) => {
         firstConsult: state.firstConsult ? true : !state.firstConsult,
         loading: true,
         products: action.payload.response.results,
-        next: action.payload.response.next.split("market")[1],
+        next: action.payload.response.next
+          ? action.payload.response.next.split("market")[1]
+          : null,
         previous: action.payload.response.previous
           ? action.payload.response.previous.split("market")[1]
           : null,

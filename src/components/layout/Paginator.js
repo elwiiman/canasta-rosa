@@ -7,7 +7,7 @@ const Paginator = () => {
 
   //move screen to top
   const moveScreen = () => {
-    const element = document.getElementById("top");
+    const element = document.getElementById("container-products");
     const headerOffset = 60;
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition - headerOffset;
