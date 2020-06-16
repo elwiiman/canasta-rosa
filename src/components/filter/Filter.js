@@ -1,39 +1,63 @@
 import React, { useState, useContext, useEffect } from "react";
 import DateFilter from "./DateFilter";
-// import { evaluateURL } from "../../utils/auxiliars";
+import MinPriceFilter from "../filter/MinPriceFilter";
+import MaxPriceFilter from "../filter/MaxPriceFilter";
+
+import { calculateUrl } from "../../utils/auxiliars";
 
 import productsContext from "../../context/productsContext";
 
 const Filter = () => {
   const ProductsContext = useContext(productsContext);
-  const { obtainProducts, slug } = ProductsContext;
+  const { obtainProducts, slug, firstConsult } = ProductsContext;
 
   const [filter, setFilter] = useState({
     dateSelected: "",
+    minPriceSelected: "",
+    maxPriceSelected: "",
   });
 
   const [url, setUrl] = useState("");
 
   ///For dates
   useEffect(() => {
-    if (slug === "Empty" && filter.dateSelected !== "") {
-      setUrl(`/products/?delivery_date=${filter.dateSelected}`);
-    } else if (slug !== "Empty" && filter.dateSelected !== "") {
-      setUrl(
-        `/products/?category__slug=${slug}&delivery_date=${filter.dateSelected}`
+    // if (slug === "Empty" && filter.dateSelected !== "") {
+    //   setUrl(`/products/?delivery_date=${filter.dateSelected}`);
+    // } else if (slug !== "Empty" && filter.dateSelected !== "") {
+    //   setUrl(
+    //     `/products/?category__slug=${slug}&delivery_date=${filter.dateSelected}`
+    //   );
+    // } else {
+    //   setUrl("/products/");
+    // }
+    // if (filter.priceSelected) {
+    //   setUrl(`/products/?${filter.priceSelected}`);
+    // }
+    if (firstConsult) {
+      let newUrl = calculateUrl(
+        slug,
+        filter.dateSelected,
+        filter.minPriceSelected,
+        filter.maxPriceSelected
       );
-    } else {
-      setUrl("/products/");
+      console.log(newUrl);
+      setUrl(newUrl);
+      //   console.log("armed", url, slug);
     }
-
-    console.log("armed", url);
-  }, [slug, filter]);
+  }, [
+    slug,
+    filter.minPriceSelected,
+    filter.maxPriceSelected,
+    filter.dateSelected,
+    url,
+    firstConsult,
+  ]);
 
   const handleChange = (e) => {
     setFilter({ ...filter, [e.target.name]: e.target.value });
   };
 
-  const submit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (filter.dateSelected === "pickADate") {
       return;
@@ -41,19 +65,27 @@ const Filter = () => {
     obtainProducts(url, slug);
     setFilter({
       dateSelected: "",
+      minPriceSelected: "",
+      maxPriceSelected: "",
     });
   };
 
   return (
     <form>
-      <h5> Día de entrega</h5>
+      <h6> Día de entrega</h6>
       <DateFilter handleChange={handleChange} filter={filter} />
+
+      <h6> Precio mínimo</h6>
+      <MinPriceFilter handleChange={handleChange} filter={filter} />
+
+      <h6> Precio máximo</h6>
+      <MaxPriceFilter handleChange={handleChange} filter={filter} />
 
       <button
         className={"btn-filter"}
         type="submit"
-        onClick={() => {
-          submit();
+        onClick={(e) => {
+          handleSubmit(e);
         }}
       >
         Aplicar Filtro

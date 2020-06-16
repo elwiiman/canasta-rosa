@@ -3,7 +3,7 @@ import { getTodayDate, getTomorrowDate } from "../../utils/auxiliars";
 
 const DateFilter = ({ handleChange, filter }) => {
   return (
-    <Fragment>
+    <div className="ml-2">
       <div className="form-group form-check">
         <input
           className="form-check-input"
@@ -68,7 +68,7 @@ const DateFilter = ({ handleChange, filter }) => {
           />
         ) : null}
       </div>
-    </Fragment>
+    </div>
   );
 };
 

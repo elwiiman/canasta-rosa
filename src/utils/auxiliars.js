@@ -20,3 +20,21 @@ export const getTomorrowDate = () => {
   tomorrow = yyyy + "-" + mm + "-" + dd;
   return tomorrow;
 };
+
+export const calculateUrl = (slug, date, min_price, max_price) => {
+  let url = new URL("https://canastarosa.com/services/api/v1/market/products/");
+  const params = [slug, date, min_price, max_price];
+  const paramName = [
+    "category__slug",
+    "delivery_date",
+    "min_price",
+    "max_price",
+  ];
+  for (let i = 0; i < params.length; i++) {
+    if (params[i] !== "") {
+      url.searchParams.set(paramName[i], params[i]);
+    }
+  }
+
+  return url.href.toString();
+};

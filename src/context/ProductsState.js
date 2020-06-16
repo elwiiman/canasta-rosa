@@ -20,7 +20,7 @@ const ProductsState = (props) => {
   const [state, dispatch] = useReducer(productsReducer, initialState);
 
   //Obtain products
-  const obtainProducts = async (url = "/products/", aSlug = "Empty") => {
+  const obtainProducts = async (url = "/products/", aSlug = "") => {
     console.log("url called", url);
     loading();
     const response = await axiosClient.get(url);
