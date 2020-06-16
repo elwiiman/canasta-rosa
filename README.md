@@ -1,5 +1,20 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Consideraciones especiales. 
+1. Debido a que el llamado a la API esta restringido por CORS desde el backend, intalé una extensión de Chrome llamada CORS Unblock, el cual habilita el header 'Access-Control-Allow-Origin: *'. 
+Entonces, para correr el proyecto desde una URL que no ha sido dad del alta en el backend será necesario instalar ésta extensión en el navegador y habilitarla. 
+
+2. La herramienta de filtros repsonsiva me faltó realizarlo para tamaños de mediano a pequeño. Únicamente está habilitado en pantallas grandes. 
+
+## Cómo correr el proyecto ?
+1. Clonar el repositorio
+2. Ejecutar comando yarn install para instalar todas las dependencias necesarias que se encuentran en la carpeta de node_modules. 
+3. Ejecutar yaran start
+4. Usar la aplicación
+
+. 
+
+
 ## Available Scripts
 
 In the project directory, you can run:
