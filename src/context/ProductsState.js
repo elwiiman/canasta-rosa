@@ -9,6 +9,7 @@ const ProductsState = (props) => {
   const initialState = {
     products: [],
     slug: "",
+    categName: "",
     page: null,
     next: null,
     previous: null,
@@ -20,13 +21,17 @@ const ProductsState = (props) => {
   const [state, dispatch] = useReducer(productsReducer, initialState);
 
   //Obtain products
-  const obtainProducts = async (url = "/products/", aSlug = "") => {
+  const obtainProducts = async (
+    url = "/products/",
+    aSlug = "",
+    aCategName = ""
+  ) => {
     console.log("url called", url);
     loading();
     const response = await axiosClient.get(url);
     dispatch({
       type: "CALL_ALL_PRODUCTS",
-      payload: { response: response.data, slug: aSlug },
+      payload: { response: response.data, slug: aSlug, categName: aCategName },
     });
     loadingSuccess();
   };
@@ -44,6 +49,7 @@ const ProductsState = (props) => {
       value={{
         products: state.products,
         slug: state.slug,
+        categName: state.categName,
         page: state.page,
         next: state.next,
         previous: state.previous,

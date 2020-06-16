@@ -3,10 +3,11 @@ import ListProducts from "./ListProducts";
 import Paginator from "../layout/Paginator";
 import Spinner from "../loading/Spinner";
 import Filter from "../filter/Filter";
+import Header from "../layout/Header";
 
 import productsContext from "../../context/productsContext";
 
-const MainProductView = ({}) => {
+const MainProductView = ({ categories }) => {
   const ProductsContext = useContext(productsContext);
   const { products, obtainProducts, firstConsult, loading } = ProductsContext;
 
@@ -30,6 +31,12 @@ const MainProductView = ({}) => {
             <Fragment>
               {products.length !== 0 && firstConsult === true ? (
                 <Fragment>
+                  <div className="row ">
+                    <div className="col">
+                      <Header />
+                    </div>
+                  </div>
+
                   <div className="row row-cols-1 row-cols-md-3">
                     <ListProducts products={products} />
                   </div>

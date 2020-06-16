@@ -90,3 +90,15 @@ body {
   font-family: Lato;
   color: #747474 !important;
 }
+
+.categ-header {
+  background: radial-gradient(
+    circle,
+    rgba(219, 98, 152, 0.7973564425770308) 0%,
+    rgba(204, 38, 113, 0.8925945378151261) 100%
+  );
+  border-radius: 0.3rem;
+  /* color: rgba(53, 50, 50, 0.822); */
+  color: white;
+  text-transform: uppercase;
+}

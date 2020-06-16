@@ -4,6 +4,7 @@ export default (state, action) => {
       return {
         ...state,
         slug: action.payload.slug,
+        categName: action.payload.categName,
         page: action.payload.response.page,
         firstConsult: state.firstConsult ? true : !state.firstConsult,
         loading: true,

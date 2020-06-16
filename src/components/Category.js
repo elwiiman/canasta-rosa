@@ -11,7 +11,8 @@ const Category = ({ category, toggleListCat }) => {
       onClick={() => {
         obtainProducts(
           `/products/?category__slug=${category.slug}`,
-          category.slug
+          category.slug,
+          category.name
         );
         toggleListCat();
       }}

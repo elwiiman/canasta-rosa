@@ -21,18 +21,6 @@ const Filter = () => {
 
   ///For dates
   useEffect(() => {
-    // if (slug === "Empty" && filter.dateSelected !== "") {
-    //   setUrl(`/products/?delivery_date=${filter.dateSelected}`);
-    // } else if (slug !== "Empty" && filter.dateSelected !== "") {
-    //   setUrl(
-    //     `/products/?category__slug=${slug}&delivery_date=${filter.dateSelected}`
-    //   );
-    // } else {
-    //   setUrl("/products/");
-    // }
-    // if (filter.priceSelected) {
-    //   setUrl(`/products/?${filter.priceSelected}`);
-    // }
     if (firstConsult) {
       let newUrl = calculateUrl(
         slug,
@@ -40,9 +28,9 @@ const Filter = () => {
         filter.minPriceSelected,
         filter.maxPriceSelected
       );
-      console.log(newUrl);
+
       setUrl(newUrl);
-      //   console.log("armed", url, slug);
+      console.log(newUrl);
     }
   }, [
     slug,
